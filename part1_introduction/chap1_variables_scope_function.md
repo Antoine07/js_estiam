@@ -544,7 +544,9 @@ Pour la fonction fléchée ce qui précéde ne marchera pas ...Le this d'une fon
 
 ## Fonctions fléchées et fonction de rappel dans les tableaux
 
-Vous pouvez utiliser une fonction fléchée sur des collections en utilisant des fonctions comme map, filter ou reduce par exemple :
+Vous pouvez utiliser une fonction fléchée sur des collections en utilisant des fonctions comme map, filter ou reduce par exemple.
+
+### Map & arrow function
 
 - map, elle permet de traiter l'ensemble des valeurs d'un tableau, elle retourne un nouveau tableau de même dimension que le tableau parcouru.
 
@@ -568,6 +570,10 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 2**3 // 8
 ```
 
+---
+
+### Filter & arrow function
+
 - La méthode filter, elle permet de filtrer des données dans un tableau en fonction d'un critère.
 
 ```js
@@ -576,6 +582,18 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 numbers.filter(number => number > 4);
 // [5, 6, 7, 8, 9, 10]
 ```
+
+### Exercice puissance 3 filtering
+
+Soit la liste numbers d'entiers, filtrez les nombres pairs et les élever à la puissance 3.
+
+```js
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+```
+
+---
+
+### Reduce &  arrow function
 
 - La méthode reduce, elle applique un accumulateur de la droite vers la gauche et traite chaque élément de la liste.
 
@@ -589,14 +607,6 @@ console.log(total); // affiche 55
 
 numbers.reduce((acc, curr) => curr + acc, 100);
 // 155
-```
-
-### Exercice puissance 3 filtering
-
-Soit la liste numbers d'entiers, filtrez les nombres pairs et les élever à la puissance 3.
-
-```js
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 ```
 
 ### Exercice sum reducer
