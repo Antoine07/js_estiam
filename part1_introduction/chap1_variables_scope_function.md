@@ -382,26 +382,27 @@ ttc("100", ".3"); // 130
 
 ### Exercice accumulator première version
 
-1. Créez une fonction **accumulator_v1**, elle fera, par défaut, la somme des valeurs d'un tableau de nombres ou la multiplication.
+1. Créez une fonction **accumulator_v1**, elle fera, par défaut, la somme des valeurs d'un tableau de nombres. Retournez le résultat.
 
-2. Vérifiez que la variable type dans les paramètres, cette variable ne peut prendre que deux valeurs : 
+2. Ajoutez au type la multiplication symbole "*", dans ce cas faites la multiplication de toutes les valeurs du tableau, retourner également le résultat. 
+
+3. Vérifiez les valeurs du paramètre type, il peut prendre que deux valeurs, retournez une erreur sinon. 
 
 - '+'
 
 - '*
 
 ```js
-let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-function accumulator_v1(numbers, type ='+' ){
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+function accumulator_v1(numbers, type = '+' ){
   // ...
 }
-
 ```
 
 ### Exercice accumulator deuxième version
 
-Créez une fonction récursive (qui s'appelle elle-même), elle prendra deux arguments : un tableau de nombres et un accumulateur initialement égale à 0. Cette fonction retournera la somme des valeurs du tableau.
+Créez une fonction récursive **accumulator_v2** (qui s'appelle elle-même), elle prendra deux arguments : un tableau de nombres et un accumulateur initialement égale à 0. Cette fonction retournera la somme des valeurs du tableau.
 
 Utilisez la méthode shift() sur le tableau. Il permet de dépiler la première valeur du tableau. Dans votre fonction récursive définissez **une condition d'arrêt**, sinon la fonction continuera de s'appeler indéfiniment (Stack Overflow).
 
@@ -414,7 +415,7 @@ let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 // retourne la première valeur du tableau en la supprimant du tableau
 numbers.shift();
 
-function accumulator(numbers, acc = 0) {
+function accumulator_v2(numbers, acc = 0) {
   // Une condition d'arrêt et retourner la somme des valeurs du tableau
   // dans la fonction on ré-appelle la fonction elle-même
   // accumulator(numbers, 10);
@@ -478,6 +479,12 @@ const sum = (x, y) => x + y ;
 const sum2 = (x, y) => {
   return x + y;
 };
+
+// Syntaxe plus courte pour mettre à la puissance 2 les valeurs d'un tableau numériques :
+const power2 = x => x**2 ;
+
+const numbers = [1, 2, 5];
+console.log(numbers.map( power2 ));
 ```
 
 Dans le cas ou vous souhaiteriez retourner un unique littéral, dans des accolades donc ..., utilisez la syntaxe suivante parenthèse :
@@ -520,11 +527,26 @@ School.sayHello();
 School.sayHelloArrowFunc();
 ```
 
+## Portée lexicale et fonction fléchée
+
+Vous pouvez définir pour une fonction nommée un constructeur comme suit :
+
+```js
+function User (name, address) {
+  this.name = name;
+  this.address = address;
+}
+
+const alan = new User('Alan', 'Paris');
+```
+
+Pour la fonction fléchée ce qui précéde ne marchera pas ...Le this d'une fonction fléchée est hérité du context parent (portée lexicale).
+
 ## Fonctions fléchées et fonction de rappel dans les tableaux
 
 Vous pouvez utiliser une fonction fléchée sur des collections en utilisant des fonctions comme map, filter ou reduce par exemple :
 
-- map retourne un tableau de même dimension que le tableau parcouru.
+- map, elle permet de traiter l'ensemble des valeurs d'un tableau, elle retourne un nouveau tableau de même dimension que le tableau parcouru.
 
 ```js
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -546,7 +568,7 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 2**3 // 8
 ```
 
-- filter, il permet de filtrer des données dans un tableau en fonction d'un critère.
+- La méthode filter, elle permet de filtrer des données dans un tableau en fonction d'un critère.
 
 ```js
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -555,7 +577,7 @@ numbers.filter(number => number > 4);
 // [5, 6, 7, 8, 9, 10]
 ```
 
-- reduce. Applique un accumulateur de la droite vers la gauche et traite chaque élément de la liste.
+- La méthode reduce, elle applique un accumulateur de la droite vers la gauche et traite chaque élément de la liste.
 
 Vous pouvez passer une valeur par défaut à la fonction reduce, deuxième paramètre. Cette valeur est facultative et par défaut vaut 0.
 
