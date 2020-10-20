@@ -382,12 +382,20 @@ ttc("100", ".3"); // 130
 
 ### Exercice accumulator première version
 
-1. Créez une fonction accumulator_v1, elle fera, par défaut, la somme des valeurs de numbers ou la multiplication des valeurs du tableau.
+1. Créez une fonction **accumulator_v1**, elle fera, par défaut, la somme des valeurs d'un tableau de nombres ou la multiplication.
+
+2. Vérifiez que la variable type dans les paramètres, cette variable ne peut prendre que deux valeurs : 
+
+- '+'
+
+- '*
 
 ```js
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-function accumulator_v1(numbers, type ='+' )
+function accumulator_v1(numbers, type ='+' ){
+  // ...
+}
 
 ```
 
