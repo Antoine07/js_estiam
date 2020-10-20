@@ -553,7 +553,7 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const powerNumber = numbers.map( number => number ** 2);
 ```
 
-### Exercice puissance 3
+### Exercice puissance 3 mapping
 
 Soit numbers une liste de nombres entiers, élevez à la puissance 3 les nombres pairs uniquement.
 
@@ -591,7 +591,7 @@ numbers.reduce((acc, curr) => curr + acc, 100);
 // 155
 ```
 
-### Exercice puissance 3 nombres pairs
+### Exercice puissance 3 filtering
 
 Soit la liste numbers d'entiers, filtrez les nombres pairs et les élever à la puissance 3.
 
@@ -599,15 +599,14 @@ Soit la liste numbers d'entiers, filtrez les nombres pairs et les élever à la 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 ```
 
-### Exercice reduce sum impair
-
+### Exercice sum reducer
 Faites la somme des nombres impairs en utilisant la fonction reduce des valeurs suivantes :
 
 ```js
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 ```
 
-### Exercice fonction map
+### Exercice phones mapping
 
 Utilisez la fonction map pour calculer le prix TTC des téléphones suivants en utilisant une fonction fléchée :
 
