@@ -380,9 +380,20 @@ ttc(100.50, "hello"); // Erreur de type
 ttc("100", ".3"); // 130
 ```
 
-### Exercice accumulator
+### Exercice accumulator première version
 
-Créez une fonction récursive (qui s'appelle elle-mêmeà, elle prendra deux arguments : un tableau de nombres et un accumulateur initialement égale à 0. Cette fonction retournera la somme des valeurs du tableau.
+1. Créez une fonction accumulator_v1, elle fera, par défaut, la somme des valeurs de numbers ou la multiplication des valeurs du tableau.
+
+```js
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+function accumulator_v1(numbers, type ='+' )
+
+```
+
+### Exercice accumulator deuxième version
+
+Créez une fonction récursive (qui s'appelle elle-même), elle prendra deux arguments : un tableau de nombres et un accumulateur initialement égale à 0. Cette fonction retournera la somme des valeurs du tableau.
 
 Utilisez la méthode shift() sur le tableau. Il permet de dépiler la première valeur du tableau. Dans votre fonction récursive définissez **une condition d'arrêt**, sinon la fonction continuera de s'appeler indéfiniment (Stack Overflow).
 
