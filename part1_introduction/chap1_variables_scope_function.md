@@ -695,7 +695,7 @@ Il est parfois intéressant de renommer les clés, dans ce cas il faudra utilise
 
 ```js
 const student = { mention: "AB", note: 12 };
-const { mention: m, notes: n } = student;
+const { mention: m, note: n } = student;
 
 console.log(m); // AB
 console.log(n); // 12
@@ -720,10 +720,30 @@ const {
 } = st;
 ```
 
+## Exemples 
+
+Utilisation de la décomposition avec une boucle for/of
+
+```js
+const phones = [
+  { name: "iphone XX", priceHT: 900 },
+  { name: "iphone X", priceHT: 700 },
+  { name: "iphone B", priceHT: 200 },
+];
+
+for( const { name, priceHT } of phones) {
+   console.log(name, priceHT);
+}
+
+for( const { priceHT, name } of phones) {
+   console.log(name, priceHT);
+} 
+```
+
 Vous pouvez également destructurer un littéral en argument d'une fonction :
 
 ```js
-const student = { mention: "AB", notes: 12 };
+const student = { mention: "AB", note: 12 };
 const infoStudent = ({ mention, note }) => "info : " + mention + "note : " + note;
 
 infoStudent(student);
