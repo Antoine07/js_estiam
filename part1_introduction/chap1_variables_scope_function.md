@@ -552,7 +552,7 @@ Vous pouvez utiliser une fonction fléchée sur des collections en utilisant des
 
 ```js
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const powerNumber = numbers.map( number => number ** 2);
+const powerNumber = numbers.map( number => number ** 2 );
 ```
 
 ### Exercice puissance 3 mapping
@@ -653,6 +653,15 @@ Vous pouvez affecter par décomposition des variables pré-définies comme suit 
 ```js
 let a, b;
 [a, b] = [10, 20];
+```
+
+## Exercice permuter les valeurs suivantes 
+
+Permuter les valeurs a et b.
+
+```js
+let a = 2;
+let b = 3;
 ```
 
 Si vous ne souhaitez affecter que quelques variables et récupérer le reste de l'assignation dans un tableau, vous devez utiliser le spread operator :
