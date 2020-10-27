@@ -740,7 +740,7 @@ for( const { priceHT, name } of phones) {
 } 
 ```
 
-Vous pouvez également destructurer un littéral en argument d'une fonction :
+Vous pouvez également destructurer un littéral en argument(s) d'une fonction :
 
 ```js
 const student = { mention: "AB", note: 12 };
@@ -889,12 +889,53 @@ let name = "email";
 const newState = { ...state, [name]: "bernard@bernard.fr" };
 ```
 
+Un exemple concret dans React, pour récupérer les valeurs dans un champ input à partir de la fonction onChange :
+
+```js
+const onChange = target => {
+  const { name, value } = target;
+
+  let state = {
+    pass : '',
+    email : ''
+  }
+
+  // name vaudra email soit pass les crochets permettent d'interpréter la valeur comme clé
+  // sans les crochets le name est interprété comme une clé
+  // state = { ...state, name : value }
+  state = { ...state, [name] : value }
+
+  console.log(state);
+}
+
+let target = { name : 'pass', value : 123 }
+
+onChange(target)
+//{pass: '123', email: ""}
+// sans les crochets dans l'assignation name est interprété comme une clé
+//{pass: '', email: "", name : 123}
+target = { name : 'email', value : "alan@alan.fr" }
+
+onChange(target)
+//{pass: "", email: "alan@alan.fr"}
+```
+
 ## Exercice ordre et longueur de mots
 
-Ordonnez par ordre croissant de nombre de lettres le tableau students ci-dessous :
+Utilisez la fonction sort de JS. Voir la documentation de cette fonction.
+
+1. Ordonnez les students par ordre alphabétique 
+
+2. Ordonnez par ordre croissant en fonction de la longueur des noms.
 
 ```js
 const students = [ "Alan", "Philippe", "Tony", "Geraldine", "Michelle", "Phi" ];
+```
+
+3. Ordonnez la liste des nombres suivants par ordre croissant :
+
+```js
+const numbers = [ 10, 7, 5, 1, 10, 5];
 ```
 
 ## Exercice populations
