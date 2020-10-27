@@ -924,7 +924,7 @@ onChange(target)
 
 Utilisez la fonction sort de JS. Voir la documentation de cette fonction.
 
-1. Ordonnez les students par ordre alphabétique 
+1. Ordonnez les students par ordre alphabétique. 
 
 2. Ordonnez par ordre croissant en fonction de la longueur des noms.
 
@@ -966,6 +966,32 @@ const populations = [
   { id: 11, name: "Isaac" },
   { id: 12, name: "Ian" },
 ];
+```
+
+Présentez le resultat sous la forme d'un tableau, par exemple :
+
+```js
+[
+  [ { id: 12, name: 'Ian', lenName: 3 } ],
+  [
+    { id: 0, name: 'Alan', lenName: 4 },
+    { id: 2, name: 'Jhon', lenName: 4 },
+    { id: 5, name: 'Brad', lenName: 4 },
+    { id: 6, name: 'Carl', lenName: 4 }
+  ],
+  [
+    { id: 3, name: 'Brice', lenName: 5 },
+    { id: 9, name: 'Edgar', lenName: 5 },
+    { id: 10, name: 'Erika', lenName: 5 },
+    { id: 11, name: 'Isaac', lenName: 5 }
+  ],
+  [
+    { id: 1, name: 'Albert', lenName: 6 },
+    { id: 7, name: 'Dallas', lenName: 6 },
+    { id: 8, name: 'Dennis', lenName: 6 }
+  ],
+  [ { id: 4, name: 'Alexendra', lenName: 9 } ]
+]
 ```
 
 4. (Facultatif) Ajoutez une clé relation au tableau population et indiquez pour chaque personne les noms de ses relations. Ordonnez ces relations par ordre croissant de nombre de relation. Affichez la personne qui le plus de relation.
