@@ -1032,5 +1032,23 @@ On peut également intégrer des ternaires comme suit avec les cotes couchés :
 
 ```js
 let isLoading = true;
-const message = `Data is ${isLoading ? `loading...` : `done!`}`;
+const message = `Data is ${isLoading ? 'loading...' : 'done!'}`;
+```
+
+Remarque on utilise une syntaxe ternaire :
+
+```js
+
+console.log( true ? 'yes' : 'no'; ); // yes
+console.log( false ? 'yes' : 'no'; ); // no
+
+```
+
+Les ternaires sont très pratiques pour assigner des valeurs de manière conditionelle :
+
+```js
+logged = true ? 'yes' : 'no'; ; // yes
+
+logeed =  false ? 'yes' : 'no'; ; // no
+
 ```
