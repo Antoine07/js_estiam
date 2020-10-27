@@ -38,6 +38,17 @@ for (const { lenName } of populations) {
 
 console.log(groupNames);
 
+// v2 avec un Set 
+// création de l'ensemble des longueurs distinctes des noms (le Set retire les doublons)
+const ensembleSizez = new Set(populations.map(pop => pop.lenName));
+const groupNames_bis = [];
+
+for (const lenName of ensembleSizez) {
+    groupNames_bis.push(populations.filter( pop => pop.lenName == lenName ));
+}
+
+console.log(groupNames_bis);
+
 
 // tri à bulle en supplément
 
