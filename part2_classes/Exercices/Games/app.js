@@ -1,3 +1,4 @@
+'use strict';
 
 import Dragon from './Dragon.js';
 import Knight from './Knight.js';
