@@ -1,6 +1,6 @@
 
 export default class Player{
-    constructor(life, force, shot, name){
+    constructor({ life, force, shot, name }){
         this._life = life;
         this._force = force;
         this._shot = shot;
