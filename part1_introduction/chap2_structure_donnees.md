@@ -2,17 +2,7 @@
 
 ## Les tableaux
 
-Un tableau est un objet en JS. Qui marche comme un littéral clé/valeur.
-
-```js
-let levels = []; // Objet
-
-// clé/valeur
-levels["0"] = 1;
-levels["1"] = 2;
-```
-
-Vous pouvez définir un tableau simplement à l'aide de crochets comme suit :
+Vous pouvez définir un tableau, qui n'est rien d'autre qu'un objet JS, simplement à l'aide de crochets :
 
 ```js
 let fruits =  ['Apple', 'Orange'];
