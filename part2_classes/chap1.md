@@ -161,6 +161,12 @@ Créez une classe Square et Rectangle. Laquelle des deux classes hérite de l'au
 
 En utilisant l'héritage créez la classe Square avec un constructeur, cette class n'aura pas d'autre méthode. Implémentez dans la classe Rectangle les méthodes suivantes : area, dim. Créez les setter et getter permettant de mettre à jour les attributs de la classe.
 
+```js
+
+let square = new Square( /* CODE TODO */ ) ;  // à vous de compléter cette classe. On aimerait avoir un carré héritant de Rectangle.
+
+```
+
 ## Attribut statique
 
 Vous pouvez définir des attributs statiques dans une classe JS. Dans ce cas cet attribut dépendra de la classe et non de l'instance de classe.
