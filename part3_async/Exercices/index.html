@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 1 : Nombre de caractères</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+
+        .result {
+            color: white;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <p class="email">Email : <span></span></p>
+    <script>
+        const elSpan = document.querySelector('p.email > span');
+
+        const login = (email, password, callback) => {
+            setTimeout(() => {
+                callback(email); // c'est une fonction qui est passée en paramètre
+            }, 1000);
+        };
+
+        // défition de la fonction de callback passée en paramètre de login
+        const getEmail = email => {
+            elSpan.innerHTML = email;
+        }
+
+        login('alan@alan.fr', 123, getEmail);
+    </script>
+</body>
+
+</html>
