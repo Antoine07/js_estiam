@@ -104,7 +104,7 @@ console.log(r1.dim())
 
 ## Exercice Parser
 
-Créez une classe Parser, elle permettra de parser une chaîne de caractères en fonction d’un motif. Voyez l’exemple de l’utilisation de cette classe ci-dessous avant d’implémenter le code :
+Créez une classe Parser, elle permettra de parser une chaîne de caractères en fonction d’un motif. Voyez l’exemple de l’utilisation de cette classe ci-dessous avant d’implémenter le code, il faut garder les digits uniquement, les nombres dans la chaîne de caractères.
 
 ```js
 const phrase = '8790: bonjour le monde:8987:7777:Hello World:    9007';
