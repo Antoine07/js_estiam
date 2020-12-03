@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="main"></p>
+</body>
+<script>
+function* algoFib(n) {
+    let [n1, n2] = [0, 1];
+    let sum = 0;
+    while (true) {
+        sum = n1 + n2;
+        [n1, n2] = [n2, sum];
+
+        yield sum;
+    }
+}
+const generator = algoFib();
+let count = 0;
+const main = document.getElementById('main');
+
+const interval = setInterval(() => {
+    if (count === 10) {
+        clearInterval(interval);
+        // console.log(generator.next());
+        main.innerHTML = `<span>${generator.next().value}</span>`;
+    } else {
+        count++;
+        // console.log(generator.next());
+        main.innerHTML = `<span>${generator.next().value}</span>`;
+    }
+}, 500);
+</script>
+</html>
