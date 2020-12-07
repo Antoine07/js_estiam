@@ -266,7 +266,7 @@ fetch( 'https://jsonplaceholder.typicode.com/users' )
     .then( res => console.log(res))
 ```
 
-## Exercice async/await
+## Exercice async/await TODOS
 
 Créez un dossier todos dans lequel vous créez un fichier index.html avec le code suivant :
 
