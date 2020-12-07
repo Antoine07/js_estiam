@@ -265,3 +265,74 @@ fetch( 'https://jsonplaceholder.typicode.com/users' )
     .then( res => res.json())
     .then( res => console.log(res))
 ```
+
+## Exercice async/await
+
+Créez un dossier todos dans lequel vous créez un fichier index.html avec le code suivant :
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="">
+    <title>Exercice 1 : Nombre de caractères</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+
+        .result {
+            color: white;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Todos</h1>
+    <ul id="todos">
+    </ul>
+    <script>
+    
+    </script>
+</body>
+
+</html>
+```
+
+à l'aide de l'API fetch du navigateur, récupérez les 3 premiers todos à l'url suivante avec un délais entre chaque todo de 500 ms :
+
+```txt
+https://jsonplaceholder.typicode.com/todos
+```
+
+Vous afficherez le titre du todo ainsi que son état.
+
+- Utilisez async/await et créer une promesse avec un délais de 500ms entre les trois requêtes.
+
+```js
+
+const request = async () => {
+
+    const response = await // ... 
+}
+
+```
+
+Affichez maintenant le premier todo puis le nom du user associé (voir la clé userId), toujours avec un délais de 500ms entre chaque todo.
+
+```js
+https://jsonplaceholder.typicode.com/users/1
+```
+
+![todos](images/todos.png)
