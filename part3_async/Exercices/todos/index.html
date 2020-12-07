@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="">
+    <title>Exercice 1 : Nombre de caractères</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+
+        .result {
+            color: black;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Todos</h1>
+    <ul class="todos">
+    </ul>
+    <script>
+        const todos = document.querySelector('.todos');
+        const URL ="https://jsonplaceholder.typicode.com";
+
+        const waiting = ms => new Promise( res => setTimeout(() => res(true), ms) ) ;
+
+        const request = async (url_todos, url_user) => {
+
+            // Array(10).keys() c'est un itérateur pour récupérer les valeurs de cet itérateur
+            // il faut le parcourir. 
+            // Vous pouvez aussi utiliser le spread operator pour décompacter les valeurs de l'itérateur [ ...Array(10).keys() ]
+            for(const id of Array(10).keys()){
+                // async/await vous permet de faire successivement deux requetes en attendant que la première
+                // soit résolue avant de faire la suivante
+                const todo = await fetch(`${url_todos}/${id + 1}`);
+                const { title, completed, userId } = await todo.json();
+
+                const w = await waiting(500);
+
+                const user = await fetch(`${url_user}/${userId}`);
+                const { name } = await user.json();
+
+                const li = document.createElement('li');
+                li.innerHTML = `${id + 1} Title : ${title} status : ${ completed ? 'closed' : 'open'} Name : ${name}`;
+                todos.appendChild(li);
+            }
+
+        }
+
+        request(URL + '/todos', URL + '/users');
+  
+    </script>
+</body>
+
+</html>
