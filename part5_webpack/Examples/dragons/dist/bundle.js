@@ -1,1 +1,1 @@
-console.log("App.js");
+(()=>{"use strict";console.log("App.js"),console.log(("Bonjour tout le monde",void console.log("Bonjour tout le monde".split(""))))})();
