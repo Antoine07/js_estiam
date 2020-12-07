@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="">
+    <title>Exercice 1 : Nombre de caractères</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+
+        .result {
+            color: black;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Addition</h1>
+    <div class="result"></div>
+    
+    <script>
+        let res = document.querySelector('.result');
+
+        const Add = (number, callback) => {
+                setTimeout(() => { callback(number); }, 500);
+            };
+
+            Add(1, number => {
+                // variable définie au niveau du bloc
+                let sum = number;
+
+                Add(2, number => {
+                    sum += number; // on récupère la somme précédente
+
+                    Add(3, number => {
+                        sum += number;
+                        
+                        console.log(sum);
+                        res.innerHTML = `<p>${sum}</p>`;
+                    });
+                });
+            });
+  
+    </script>
+</body>
+
+</html>
