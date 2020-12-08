@@ -324,6 +324,8 @@ npm install --save babel-polyfill
 
 ### Exercice d'application Créez le projet suivant 
 
+Pour le projet aidez-vous du wireframe ci-après.
+
 **dragon-polyfill** avec la configuration suivante :
 
 ```text
@@ -376,7 +378,7 @@ const dragons = {
 export default dragons;
 ```
 
-4. Affichez la liste des dragons en affichant à chaque fois si il existe son élément, utilisez la nouvelle syntaxe ES2020 suivante :
+4. Affichez la liste des dragons, dans une liste ul/li, en affichant à chaque fois si il existe son élément (fire ou water). Utilisez la nouvelle syntaxe ES2020 suivante pour tester l'existence d'une propriété :
 
 ```js
 
@@ -386,6 +388,42 @@ myObject?.attribut
 
 - Que c'est-il passé dans le fichier bundle.js ? Builder votre fichier ou inspectez le code avec l'inspecteur du navigateur.
 
+5. Créez le fichier relationships.js suivant. Sous chaque dragon affichez ses relations avec les autres dragons :
+
+```js
+const relationships =  [
+    { id: 1, relations : [2, 3] },
+    { id: 2, relations : [1] },
+    { id: 3, relations : [2] }
+]
+```
+6. Un jury a attribué des valeurs sur la force de chaque dragon. En utilisant les données suivantes ajoutez aux données dragons ci-dessus précédentes la moyenne de leur force. Affichez ces résultats sous chaque dragon dans la page Web.
+
+```js
+const forces =  [
+    { id: 1, notes : [12, 13, 19, 11] },
+    { id: 2, notes : [11, 15, 17, 9] },
+    { id: 3, notes : [20, 11, 12, 7] }
+]
+```
+
+7. créez un bouton order pour ordonner l'affichage des dragons par ordre croissant ou décroissant.
+
+## Wireframe
+
+```txt
+---------------------------------------------
+
+                    Dragons 
+[ order C/D ]
+---------------------------------------------
+    Apalala, element : fire
+        force : ...
+    Balaur , element : water 
+        force : ...
+    Bolla 
+        force : ...
+```
 
 ## Préparation du fichier de configuration webpack pour la production
 
