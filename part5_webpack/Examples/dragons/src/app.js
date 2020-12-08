@@ -1,5 +1,7 @@
-import parser from './core/utils';
+import { addDragons } from './core/utils'; // export normal nommé
 
-console.log("App.js")
+import dragons from './core/dragons'; // export default peut être renommé
 
-console.log(parser("Bonjour tout le monde"));
+const main = document.getElementById('main');
+
+document.body.onload = addDragons(main, dragons) ;

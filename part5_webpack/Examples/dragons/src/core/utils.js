@@ -1,5 +1,6 @@
+export function addDragons(main, dragons){
 
-export default  (str) => {
+    
 
-    console.log(str.split(''));
+    console.log(main);
 }
