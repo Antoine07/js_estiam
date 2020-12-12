@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="">
+    <title>Exercice 1 : Nombre de caractères</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+
+        .result {
+            color: white;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Listes nombres</h1>
+    <ul class="numbers">
+        <li>A= <span>1</span></li>
+        <li>B=<span>2</span></li>
+        <li>C=<span>3</span></li>
+    </ul>
+
+    <script>
+        // document c'est le point d'entrée de votre page Web
+        let els = document.querySelectorAll('.numbers > li'); // un tableau des li
+        console.log(els);
+
+        console.log(els[0]); // avec les indices j'accède aux éléments
+        console.log(els[1]);
+        console.log(els[2]);
+
+        // li un objet qui possède des méthodes le point . me permet d'accéder à une méthode de mon objet  
+        console.log(els[0].querySelector('span'));
+        console.log(els[0].querySelector('span').innerHTML);
+
+        /*
+          els[0].querySelector('span').innerHTML = 3;
+          els[1].querySelector('span').innerHTML = 1;
+          els[2].querySelector('span').innerHTML = 2;
+        */
+
+        // i++ meme chose i = i + 1
+
+        // Fonctionnement de la boucle en trois parties A, B et C
+        // A. let i = 0 on définit la première valeur de la boucle 
+        // B. i < 3 condition d'arrêt de votre boucle
+        // C. i++ pour chaque "tour de boucle" i s'incrément de 1 
+        for (let i = 0; i < 3; i++) {
+            console.log(i);
+        }
+
+        // On boucle sur l'ensemble des éléments du tableau li récupérés avec querySelectorAll
+        // els.length donne la longueur du tableau, ici 3
+        for (let i = 0; i < els.length; i++) {
+            // els.length - i pour permuter les valeurs :
+            // successivement pour les valeurs de i :
+            // pour i = 0, le premier élément li els[O], on aura : 3 - 0 = 3 
+            // pour i = 1, le deuxième élément li els[1], on aura : 3 - 1 = 2 
+            // pour i= 2, le troisième élément li els[2], on aura : 3 - 2 = 1 
+            els[i].querySelector('span').innerHTML = els.length - i;
+        }
+    </script>
+</body>
+
+</html>

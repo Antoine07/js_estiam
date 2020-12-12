@@ -1,0 +1,17 @@
+$body-color: #eceff1;
+$bg-color : #263238;
+body {
+  color: $body-color;
+  background-color: $bg-color;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .container div {
+    width: 560px;
+    height: 400px;
+  }

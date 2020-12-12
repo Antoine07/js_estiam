@@ -236,24 +236,54 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         port : 9000,
-        open: true
+        open: true,
+        hot : true // reload automatique
     }
 }
 ```
 
-Commande de build à ajouter dans le fichier package.json, on lui précise le fichier de configuration pour tenir compte des options du build.
+Commande de build à ajouter dans le fichier package.json, on lui précise le fichier de configuration pour tenir compte des options du build. Notez que l'on peut également passer une variable d'environnement NODE_ENV permettant de préciser que nous somme en production. Dans ce cas Webpack optimisera le/les fichier(s) de build, par exemple en mimifiant le fichier JS.
 
 ```json
 "scripts": {
     "start": "webpack serve",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --env NODE_ENV=production --config webpack.config.js"
 },
-
 ```
 
-## Exercice Dragons list
+Avec l'option de variable d'environement pensez à ré-écrire votre fichier webpack comme suit :
 
-Webpack applique le mode strict pour les scripts buildés, dans ce mode vous aurez plus d'erreurs JS remontés pour le compilateur. Pour les fonctions par exemple vous devez les définir avant de les appelée.
+```js
+
+// pour créer un chemin absolu pour webpack
+const path = require('path'); 
+
+module.exports = env => {
+    
+    console.log(env.NOD_ENV)
+
+    return {
+        mode : "development",
+        entry: './src/app.js', // Point d'entrée
+        // Sortie
+        output: {
+            path: path.resolve(__dirname, 'dist'),
+            filename: "bundle.js"
+        },
+        // Configuration de webpack-dev-server minimale
+        devServer: {
+            contentBase: path.join(__dirname, 'dist'),
+            port : 9000,
+            open: true,
+            hot : true // reload automatique
+        }
+    }
+}
+```
+
+## 01 Exercice Dragons list
+
+Webpack applique le mode strict pour les scripts buildés, dans ce mode vous aurez plus d'erreurs JS remontés pour le. Pour les fonctions par exemple vous devez les définir avant de les appelée.
 
 Récupérez les données de l'exercice ci-dessous :
 
@@ -271,50 +301,49 @@ export default dragons;
 
 ```
 
-1. Affichez la liste de vos dragons dans la page dans une liste **ul/li**. Vous importerez et préparerez les données dans le fichier app.js. Créez une fonction addDragons que vous appelerez comme suit dans le fichier app.js :
+1. Affichez la liste de vos dragons dans la page dans une liste **ul/li**. Vous importerez et préparerez les données dans le fichier app.js. Créez une fonction addDragons que vous appelerez comme suit dans le fichier app.js. Cette fonction permettra de charger les données une fois le DOM de la page en question construit :
 
 ```js
 document.body.onload = addDragons;
 
 ```
 
-2. Affichez maintenant leur nombre, en premier dans la page. Créez une deuxième fonction addCount. Comment et proposez une solution pour insérer ce contenu avant la liste des dragons.
+2. Affichez maintenant leur nombre, en premier dans la page. Modifiez la fonction addDragons.
 
-## Babel
+- Babel
 
-Avant de commencer regarder le fichier bunble.js votre code ES6 n'est pas transpilé en code ES5.
-
-Nous allons tout d'abord installer dans notre dernier projet dragons les dépendances de développement Babel pour travailler avec des loaders :
+Babel va nous permettre de traduire du code ES6 ou ES2020 en ES5 compatible avec la plupart des navigateurs.
 
 ```bash
-npm install --save-dev babel-loader babel-core babel-preset-env
+npm install --save-dev babel-loader @babel/core @babel/preset-env 
 ```
 
 Dans le fichier webpack.config.js vous devez définir le loader Babel afin qu'il ré-écrive le fichier ES6 (ou JS moderne ...) en ES5 (compatible avec la plupart des navigateurs) par exemple :
 
 ```js
-// pour créer un chemin absolu pour webpack
 const path = require('path'); 
 
 module.exports = {
     // ...
     ,
-    module: {
-    rules: [
-      {
-        test: /.(js)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options : ["env"] // Pour votre JS moderne
-        }
-      }
-    ]
-  }
+   module: {
+      rules: [
+        {
+          test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env"],
+            },
+          },
+        },
+      ],
+    }
 }
 ```
 
-### polyfill pour les nouvelles fonctionnalités des nouvelles versions de JS
+- polyfill pour les nouvelles fonctionnalités des nouvelles versions de JS
 
 Si vous utilisez des nouvelles fonctionnalités qui n'existe pas en ES5 ou une autre version supérieur pour votre navigateur, nous utiliserons des polyfill. Ainsi dans votre code vous pourrez utiliser toutes les nouvelles fonctionnalités de JS sans vous souciez de la compatibilité avec la cible votre navigateur.
 
@@ -322,48 +351,24 @@ Si vous utilisez des nouvelles fonctionnalités qui n'existe pas en ES5 ou une a
 npm install --save babel-polyfill
 ```
 
-### Exercice d'application Créez le projet suivant 
+3. Configurez correctement le projet avec Webpack et Babel
 
-Pour le projet aidez-vous du wireframe ci-après.
+4. Ajoutez les polyfill au projet
 
-**dragon-polyfill** avec la configuration suivante :
-
-```text
-dragon-polyfill/
-    src/
-        dragons.js (ne mettez rien pour l'instant dans ce fichier)
-    app.js
-    webpack.config.js
-```
-
-1. Configurez correctement le projet avec Webpack et Babel
-
-2. Ajoutez les polyfill au projet
-
-Ajoutez également dans votre fichier webpack.config.js, pour la clé entry la configuration suivante :
+Ajoutez également dans votre fichier webpack.config.js, pour la clé **entry** la configuration suivante :
 
 ```js
-// pour créer un chemin absolu pour webpack
 const path = require('path'); 
 
 module.exports = {
-    watch: true,
-    // précise que l'on est en mode développement
-    mode : "development",
+    // ...
     entry: ['babel-plyfill', './src/app.js' ], // Point d'entrée
    
    // La suite de votre code ...
 }
 ```
 
-Dans le fichier app.js point d'entrée de votre application vous ajouterez les polyfills :
-
-```js
-import 'babel-plyfill';
-// votre code ...
-```
-
-3. Dans le dossier src ajoutez les nouveaux dragons et importez ces dragons dans le fichier app.js
+5. Dans le dossier src ajoutez les nouveaux dragons et importez ces dragons dans le fichier app.js
 
 ```js
 const dragons = {
@@ -378,7 +383,7 @@ const dragons = {
 export default dragons;
 ```
 
-4. Affichez la liste des dragons, dans une liste ul/li, en affichant à chaque fois si il existe son élément (fire ou water). Utilisez la nouvelle syntaxe ES2020 suivante pour tester l'existence d'une propriété :
+6. Affichez la liste des dragons, dans une liste ul/li, en affichant à chaque fois si il existe son élément (fire ou water). Utilisez la nouvelle syntaxe ES2020 suivante pour tester l'existence d'une propriété :
 
 ```js
 
@@ -388,7 +393,7 @@ myObject?.attribut
 
 - Que c'est-il passé dans le fichier bundle.js ? Builder votre fichier ou inspectez le code avec l'inspecteur du navigateur.
 
-5. Créez le fichier relationships.js suivant. Sous chaque dragon affichez ses relations avec les autres dragons :
+7. Créez le fichier relationships.js suivant. Sous chaque dragon affichez ses relations avec les autres dragons :
 
 ```js
 const relationships =  [
@@ -397,7 +402,7 @@ const relationships =  [
     { id: 3, relations : [2] }
 ]
 ```
-6. Un jury a attribué des valeurs sur la force de chaque dragon. En utilisant les données suivantes ajoutez aux données dragons ci-dessus précédentes la moyenne de leur force. Affichez ces résultats sous chaque dragon dans la page Web.
+8. Un jury a attribué des valeurs sur la force de chaque dragon. En utilisant les données suivantes ajoutez aux données dragons ci-dessus précédentes la moyenne de leur force. Affichez ces résultats sous chaque dragon dans la page Web.
 
 ```js
 const forces =  [
@@ -407,7 +412,7 @@ const forces =  [
 ]
 ```
 
-7. créez un bouton order pour ordonner l'affichage des dragons par ordre croissant ou décroissant.
+9. (**) créez un bouton order pour ordonner l'affichage des dragons par ordre croissant ou décroissant de force.
 
 ## Wireframe
 
@@ -423,46 +428,4 @@ const forces =  [
         force : ...
     Bolla 
         force : ...
-```
-
-## Préparation du fichier de configuration webpack pour la production
-
-Par défaut avec le mode developpmnent Webpack v4 ou v5 ne minifiera pas les fichiers JS. Créez un deuxième fichier pour la production et modifier la ligne de commande dans le fichier package.json :
-
-- fichier webpack.production.js
-
-```js
-const path = require('path'); 
-
-module.exports = {
-    mode : "production",
-    entry: ['babel-plyfill', './src/app.js' ], // Point d'entrée
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: process.env.NODE_ENV === 'production' ? 'bundle.min.js' : 'bundle.js'
-    },
-    module: {
-        rules: [
-        {
-            test: /\.m?js$/,
-            exclude: /(node_modules|bower_components)/,
-            use: {
-            loader: 'babel-loader',
-            options: {
-                presets: ['@babel/preset-env']
-            }
-            }
-        }
-        ]
-  }
-}
-```
-
-Dans le fichier package.json modifiez la ligne de commande build, relancez et ouvrez votre fichier bundle.js pour voir les modifications :
-
-```json
- "scripts": {
-    "start": "webpack serve",
-    "build": "webpack --config webpack.production.js"
-  },
 ```

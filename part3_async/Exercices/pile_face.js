@@ -16,3 +16,4 @@ Promise.all([coin(), coin(), coin()]).then(res => {
 }).then(
     gain => console.log(gain)
 );
+

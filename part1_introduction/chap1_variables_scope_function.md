@@ -2,6 +2,23 @@
 
 JS première version 1995, auteur Brendan Eich.
 
+Rappelons que JS est un langage interprété dont le typage est faible. Mais attention, cela ne veut pas dire que JS ne définit pas un type à ses variables.
+
+Un typage faible permet les convertions de type implicites :
+
+```js
+let foo = 1 + "2";
+```
+
+Et JS a un typage dynamique, le type est déterminé à l'exécution :
+
+```js
+// Le type de a sera défini à l'exécution de cette ligne
+let a = 1;
+```
+
+Revenons sur le fait que JS est interprété. Cela signifie que le code source est interprété par le moteur JS est exécuté directement à partir du code source. Il n'y a pas de compilation préalable du code avant son exécution. Par contre les moteurs JS optimisent leur compilation à la volé en taguant certaines parties du code pour les compilés qu'une fois et ré-utiliser la compilation du code source, sans repasser par celui-ci donc pour exécuter le programme.
+
 JS est un langage de script, orienté objet. Principalement exécuté dans une page Web, on le retrouve aujourd'hui dans d'autres contextes comme : Node.js (côté serveur), MongoDB (NoSQL) (interpréteur JS), ...
 
 JS suit la norme **ECMAScript**, standard que suivent certains langages de script comme Javascript. Cette norme évolue en permance. Les principaux navigateurs Web implémentent cette norme pour le JS.
