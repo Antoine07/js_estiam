@@ -1,6 +1,6 @@
 import "./style.scss";
-import { createEls } from './core/utils';
+import { run } from './core/utils';
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    createEls('.numbers');
+    run();
 });
