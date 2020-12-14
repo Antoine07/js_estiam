@@ -17,17 +17,21 @@ Et JS a un typage dynamique, le type est déterminé à l'exécution :
 let a = 1;
 ```
 
-Revenons sur le fait que JS est interprété. Cela signifie que le code source est interprété par le moteur JS est exécuté directement à partir du code source. Il n'y a pas de compilation préalable du code avant son exécution. Par contre les moteurs JS optimisent leur compilation à la volé en taguant certaines parties du code pour les compilés qu'une fois et ré-utiliser la compilation du code source, sans repasser par celui-ci donc pour exécuter le programme.
+Un langage interprété utilise le code source pour le compiler puis l'exécuter, il n'y a pas de création d'exécutable. Pour chaque exécution, JS repartira du code source.
 
-JS est un langage de script, orienté objet. Principalement exécuté dans une page Web, on le retrouve aujourd'hui dans d'autres contextes comme : Node.js (côté serveur), MongoDB (NoSQL) (interpréteur JS), ...
+Le moteur JS de compilation peut taguer du code qui se répète et créer, pour ces parties uniquement, un exécutable. 
 
-JS suit la norme **ECMAScript**, standard que suivent certains langages de script comme Javascript. Cette norme évolue en permance. Les principaux navigateurs Web implémentent cette norme pour le JS.
+JS est un langage de script, orienté objet.
 
-Une version majeure d'ECMAScript est celle qui a été définie en 2015 : ES2015 que l'on appelle fréquemment ES6 ... Le nom de la version étant déterminé par la dernière version du standard en cours donc ES6 pour 2016 ... Aujourd'hui la dernière version officielle est EMACScript 2020.
+JS suit la norme **ECMAScript**, standard que suivent certains langages de script comme Javascript. Cette norme évolue en permance. Les principaux navigateurs Web mettent à jour leur moteur d'exécution pour suivre les évolutions de ce langage.
 
-Bien que JS soit un langage faiblement typé, le typage est partout...
+Une version majeure d'ECMAScript est celle qui a été définie en 2015 : ES2015 que l'on appelle ES6 ... Le nom de la version étant déterminé par la dernière version du standard en cours donc ES6 pour 2015 ... Aujourd'hui la dernière version officielle est EMACScript 2020.
 
-Le type d'une variable en JS est déterminé lors de l'assignation. Ce type peut changer dans un script si on re-assigne cette variable avec d'autres valeurs.
+## Typage
+
+Bien que JS soit un langage faiblement typé, JS type toutes ses variables.
+
+Le type d'une variable en JS est déterminé lorsqu'on la définit et qu'on lui assigne une valeur particulière. Ce dernier peut changer si on ré-assigne un valeur d'un autre type.
 
 ```js
 let n = 10;
@@ -39,7 +43,7 @@ n = "Hello";
 console.log(typeof n); // string
 ```
 
-Dans l'exemple ci-dessus le type de la variable n a changé, n est passé du type number à string.
+Dans l'exemple ci-dessus le type de la variable n a changé, il est passé du type number au type string (ré-assignation).
 
 Notons que lorsque vous définissez une variable sans lui affecter une valeur particulière, celle-ci est de type "undefined" :
 
@@ -48,9 +52,9 @@ let username;
 console.log(typeof username); // undefined
 ```
 
-## Les différents types JS
+## Les différents types en JS
 
-On distingue les types suivants en Javascript. Attention tous les types primitifs définissent des valeurs immuables (que l'on ne peut modifier) :
+On distingue les types suivants en Javascript. Attention tous les types primitifs définissent des valeurs non modifiables (immuables).
 
 ### 1. Types primitifs
 
@@ -65,7 +69,6 @@ let flag = true;
 - null
 
 ```js
-
 // On ne peut modifier un "null" ...
 let flag = null;
 ```
@@ -74,7 +77,7 @@ let flag = null;
 
 - number
 
-- bgint (un nouveau type dans ES2020 )
+- bigInt (big integer)
 
 Il faut ajouter l'opérateur **n** pour définir des BigInt
 
@@ -87,8 +90,6 @@ console.log(x);
 - string
 
 ```js
-
-// On ne peut modifier la chaîne de caractères "Hello World" ...
 let message = "Hello World";
 ```
 
@@ -99,11 +100,11 @@ let message = "Hello World";
 
 ### 2. Les types Objects
 
-Et de manière un peu différente on a le type 0bject. Ils sont mutables, on peut modifier un objet. Rappelons ici qu'un objet est une valeur conservée en mémoire à laquelle on fait référence grâce à un identifant. Nous reverrons ce point qui est important dans le code lorsqu'on manipule des objets.
+Ils sont mutables, on peut modifier la valeur d'un objet. Un objet est une valeur conservée en mémoire à l'aide d'une référence unique.
 
 Dans la liste des objets vous avez :
 
-- Les objets classiques et les fonctions (ce sont des objets ...En JS)
+- Les objets classiques les classes et les fonctions
 
 ```js
 class Model {
@@ -117,6 +118,7 @@ class Model {
   }
 }
 
+// Création d'un instance (objet)
 const myModel = new Model();
 
 function modelFunc(n) {
@@ -132,7 +134,7 @@ function modelFunc(n) {
 const now = new Date();
 ```
 
-- Les collections comme les tableaux
+- Les collections comme les tableaux, Map, Set, ...
 
 Les déclarations suivantes sont identiques :
 
@@ -141,11 +143,7 @@ let notes = [1, 2, 3];
 let newNotes = new Array(1, 2, 4);
 ```
 
-- Les collections avec clés : Map, Set, ...
-
-Un Map est une simple collection de clés/valeurs. Cette structure de données utilise des clés pour référencer des valeurs, chaque clé est donc unique. 
-
-Un Set stocke un ensemble de valeurs uniques de n'importe quel type.
+Un Map est une simple collection de clés/valeurs. 
 
 ```js
 // création d'un Map
@@ -166,12 +164,10 @@ console.log(ensemble);
 
 ## Portée (ou scope en Anglais) des variables en JS
 
-Nous n'utilisons plus le mot réservé var pour définir une variable à la place nous utilisons le mot reservé **let** qui a été introduit pour donner plus de cohérence.
-
-Définition :
+Définition let :
 **La variable définie avec let a une portée scopée au niveau du bloc dans lequel elle a été déclarée.**
 
-*Remarque importante : lorsque vous définissez une variable à l'intérieur d'une fonction elle est scopée (portée) dans la fonction elle-même, pas d'effet de bord avec le reste du script.*
+*Remarque importante : lorsque vous définissez une variable à l'intérieur d'une fonction elle est scopée (portée) dans la fonction elle-même, elle n'a pas d'effet de bord avec le reste du script.*
 
 ```js
 
@@ -182,18 +178,18 @@ function foo() {
 
 foo();
 
-// erreur du type ReferenceError pas d'effet de bord
+// ReferenceError
 console.log(a);
 ```
 
-Si vous définissez une variable **de même nom** à l'extérieur de la fonction alors, elle n'aura pas d'effet sur la variable à l'intérieur de la fonction. Voyez ce qui suit :
+Si vous définissez une variable **de même nom** à l'extérieur de la fonction alors, elle n'aura pas d'effet sur la variable à l'intérieur de la fonction foo ci-après :
 
 ```js
 let a = 11;
 
 function foo() {
   let a = 10;
-  console.log(a); // affiche 10
+  console.log(a); 
 }
 
 // affiche 10
@@ -203,7 +199,9 @@ foo();
 console.log(a);
 ```
 
-- JS cherche la définition de ses variables en remontant les scopes. Si la variable n'est pas définie une erreur **ReferenceError** est levée.
+### Remonter des scopes 
+
+JS cherche la définition de ses variables dans le scope courant et sinon en remontant les scopes, si la variable n'est définie dans aucun des scopes alors une erreur **ReferenceError** est levée.
 
 ```js
 // bloc courant pour b
@@ -221,6 +219,8 @@ function baz() {
 baz();
 
 ```
+
+Un autre exemple :
 
 ```js
 // bloc courant
@@ -242,7 +242,7 @@ baz();
 
 ## Exercice scope calcul (sans coder)
 
-Sans exécuter le code ci-dessous dire si celui est valide ou non ? Modifiez le code pour qu'il s'exécute dans le cas où celui-ci ne serait pas valide.
+Est ce que le code qui suit vous semble correcte, répondre sans exécuter le code ? Si ce dernier n'est pas valide modifie-le afin qu'il puisse s'exécuter correctement.
 
 ```js
 
@@ -268,7 +268,7 @@ calcul();
 
 ## Exercice TDZ (temporal dead zone) (sans coder)
 
-Est ce que le code suivant est valide ?
+Est ce que le code suivant est valide ? Répondez sans exécuter le code.
 
 ```js
 function tdz() {
@@ -282,7 +282,7 @@ tdz();
 
 ## Exercice for let (sans coder)
 
-- Est ce que le code ci-dessous va s'exécuter correctement ?
+Est ce que le code suivant est valide ? Répondez sans exécuter le code.
 
 ```js
 let i = 100;
@@ -294,7 +294,8 @@ for (let i = 0; i < 10; i++) {
 console.log(i);
 ```
 
-- Le code suivant s'exécute-t-il correctement ? Et si oui qu'affichera t il ? Répondez sans exécuter le code :
+Est ce que le code suivant est valide ? Répondez sans exécuter le code.
+Si ce code est valide qu'affichera-t-il ?
 
 ```js
 for (let j = 0; j < 10; j++) {}
@@ -306,19 +307,14 @@ console.log(j);
 Définition :
 **La variable définie avec const a une portée scopée au niveau du bloc dans lequel elle a été déclarée.**
 
-Le mot réservé du langage JS **const** permet de définir une constante, il permet de déclarer une variable à assignation unique. Vous êtes également obligé de lui assigner une valeur lors de sa déclaration.
+Le mot réservé du langage JS **const** permet de définir une constante à assignation unique. Notez que vous êtes obligé de lui donner une valeur lors de sa définition. Une constante ne peut être re-définit.
 
 ```js
 const API_KEY = "ABf#123@";
-
 console.log(API_KEY);
 ```
 
-Une fois API_KEY définie vous ne pouvez pas re-définir cette variable ni même lui re-assigner une autre valeur.
-
-Une constante peut contenir tout type de variable. Dans le cas d'un objet comme un tableau par exemple, les valeurs du tableau sont modifiables(...) En effet, une constante bloque la ré-assignation de la variable mais, ne rend pas l'objet immuable.
-
-Vous pouvez donc effectuer les opérations suivantes sur la constante STUDENTS ci-dessous :
+Une constante peut contenir tout type de variable. Dans le cas d'un objet comme un tableau par exemple, les valeurs du tableau sont modifiables(...) En effet, une constante bloque la ré-assignation de la variable, mais ne rend pas l'objet non-modifiable.
 
 ```js
 
@@ -341,9 +337,7 @@ Par contre ce qui suit est impossible, l'erreur suivante sera levée :
 
 ```js
 let newStudents = ["Alice"];
-
-// bloqué au niveau de la référence impossible
-// ré-assignation
+// re-assignation impossible
 STUDENTS = newStudents;
 ```
 
@@ -362,9 +356,11 @@ const STUDENTS = ["Alan", "Bernard", "Jean"];
 ```
 
 
-### Le mot clé var un mot
+### var définition
 
-On n'utilise plus ce mot clé pour définir une variable dans un script JS. Il faut cependant en dire un mot car, vous pouvez le rencontrer dans un script. Il permet de définir une variable globale ou locale à une fonction sans distinction de bloc :
+*Ce mot clé pour définir une variable ne doit plus être utilisé, utilisez let à la place.*
+
+Il permet de définir une variable globale ou locale à une fonction sans distinction de bloc :
 
 ```js
 function foo() {
@@ -375,15 +371,30 @@ function foo() {
   }
   console.log(x);  // 2
 }
+foo(); // 2 2
 ```
 
-On utilisera let et const pour définir nos variables dans un script, car var comme dans l'exemple précédent peut prêter à confusion lors des définitions de variable.
+Par comparaison avec le mot clé let :
+
+```js
+function bar() {
+  let x = 10; // portée fonction pas bloc comme let
+  if (true) {
+    let x = 2;  // c'est la même variable !
+    console.log(x);  // 2
+  }
+  console.log(x);  // 10
+}
+bar(); //  2 10
+```
 
 ## Fonction
 
+Une fonction en JS est un objet.
+
 ### Paramètres par défaut
 
-Lorsque vous définissez une fonction avec des paramètres, vous pouvez donner des valeurs par défaut à certain(s) de ses paramètre(s) lors de sa définition :
+Valeurs par défaut facultatif :
 
 ```js
 function add(a, sup = 1) {
@@ -413,30 +424,6 @@ ttc(100.50, 0.2); // 144.72
 ttc("hello", 0.2); // Erreur de type
 ttc(100.50, "hello"); // Erreur de type
 ttc("100", ".3"); // 130
-```
-
-### Exercice accumulator
-
-Créez une fonction récursive (qui s'appelle elle-mêmeà, elle prendra deux arguments : un tableau de nombres et un accumulateur initialement égale à 0. Cette fonction retournera la somme des valeurs du tableau.
-
-Utilisez la méthode shift() sur le tableau. Il permet de dépiler la première valeur du tableau. Dans votre fonction récursive définissez **une condition d'arrêt**, sinon la fonction continuera de s'appeler indéfiniment (Stack Overflow).
-
-Voyez l'exemple suivant pour vous aider à faire cet exercice :
-
-```js
-
-let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-// retourne la première valeur du tableau en la supprimant du tableau
-numbers.shift();
-
-function accumulator(numbers, acc = 0) {
-  // Une condition d'arrêt et retourner la somme des valeurs du tableau
-  // dans la fonction on ré-appelle la fonction elle-même
-  // accumulator(numbers, 10);
-}
-
-console.log(accumulator(numbers)); // doit retourner 55
 ```
 
 ## Syntaxe par décomposition
@@ -471,11 +458,25 @@ const badPriceHT = [100.50, "hello", 55.7];
 console.log(sumTTC(...badPriceHT, .3));
 ```
 
+### littéral pour définir des paramètres
+
+Vous pouvez utiliser la syntaxe suivante pour définir les paramètres d'une fonction, dans ce cas vous n'avez pas à vous soucier de l'ordre des paramètres :
+
+```js
+function baz({ a, b }){ 
+  console.log(a, b ) 
+}
+
+baz({ a: 1, b : 2}); // 1 2
+baz({ b: 2, a : 1}); // 1 2
+
+```
+
 ## Le point sur le this des objets
 
 Le this d'un objet est déterminé par la manière dont vous allez appeler l'objet "contexte".
 
-L'objet sur lequel vous appelez la fonction détermine lors de l'appel le this :
+L'objet sur lequel vous **appelez** la fonction détermine le this :
 
 **objet.my_function()**
 
@@ -499,12 +500,14 @@ console.log(o2.f2()) ; // this de o2
 
 const o3 = o1.f1;
 
-console.log(o3()) ; // undefined
+console.log(o3()) ; // undefined car on n'appelle la fonction f1 explicitement
 ```
 
-De même faite attention dans les fonction avec des callback, dans l'exemple qui suit setTimeout fera appel à la fonction sans reprendre le context de l'objet lui-même, this sera en mode strict undefined :
+De même faite attention dans les fonctions de callback, dans l'exemple qui suit setTimeout fera appel à la fonction sans reprendre le context de l'objet lui-même, this sera, en mode strict, undefined :
 
 ```js
+'use strict';
+
 setTimeout(o1.f1, 1000); // ici setTimeout appel la fonction f1.
 ```
 
@@ -603,7 +606,7 @@ On peut par exemple définir la fonction sum en utilisant la méthode from :
 function sum(){
   const args = Array.from(arguments);
   
-  return [ ...args ].reduce( (acc, curr) => acc + curr );
+  return args.reduce( (acc, curr) => acc + curr );
 }
 
 console.log( sum(1,2,3,5) ); // 11
@@ -648,7 +651,7 @@ const model2 = (x, y) => {
 }
 ```
 
-Contrairement aux fonctions classiques, les fonctions fléchées ne re-définissent pas de this. Si vous vous référez dans une fonction fléchée au mot clé this, la fonction fléchée **récupérera le this du contexte** de définition de la fonction :
+Contrairement aux fonctions classiques, les fonctions fléchées ne re-définissent pas de this. Si vous vous référez dans une fonction fléchée au mot clé this, la fonction fléchée **récupérera le this du contexte** de définition de la fonction flèchée :
 
 ```js
 const School = {
@@ -714,7 +717,6 @@ function User(name){
 
 User('Alan'); // this undefined
 ```
-
 
 Lorsque vous appelez une fonction comme méthode d'un objet, le this est le this de l'objet précédent l'appel de la méthode, dans l'exemple ci-dessous c'est l'objet Model :
 
@@ -1280,4 +1282,30 @@ Une deuxième évaluation courcicuit, renverra true
 
 ```js
 true || user
+```
+
+## Exercices supplémentaires
+
+### Exercice accumulator
+
+Créez une fonction récursive (qui s'appelle elle-même, elle prendra deux arguments : un tableau de nombres et un accumulateur initialement égale à 0. Cette fonction retournera la somme des valeurs du tableau.
+
+Utilisez la méthode shift() sur le tableau. Il permet de dépiler la première valeur du tableau. Dans votre fonction récursive définissez **une condition d'arrêt**, sinon la fonction continuera de s'appeler indéfiniment (Stack Overflow).
+
+Voyez l'exemple suivant pour vous aider à faire cet exercice :
+
+```js
+
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// retourne la première valeur du tableau en la supprimant du tableau
+numbers.shift();
+
+function accumulator(numbers, acc = 0) {
+  // Une condition d'arrêt et retourner la somme des valeurs du tableau
+  // dans la fonction on ré-appelle la fonction elle-même
+  // accumulator(numbers, 10);
+}
+
+console.log(accumulator(numbers)); // doit retourner 55
 ```
